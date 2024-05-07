@@ -1,1 +1,1 @@
-const drop = (arr, n = 1) => arr.slice(n);
+const reverseWords = (str) => str.split(" ").reverse().join(" ");
