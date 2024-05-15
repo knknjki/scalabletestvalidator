@@ -1,12 +1,22 @@
-const insertionSort = (arr) => {
-  for (let i = 1; i < arr.length; i++) {
-    let key = arr[i];
-    let j = i - 1;
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j];
-      j--;
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = mergeSort(arr.slice(0, mid));
+  const right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+function merge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
     }
-    arr[j + 1] = key;
   }
-  return arr;
-};
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
